@@ -1,6 +1,6 @@
 package cl.svasquezm.glitunesplayer.tracklist.domain
 
-import cl.svasquezm.glitunesplayer.domain.TrackDomainModel
+import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 import org.junit.Assert
 import org.junit.Test
 
