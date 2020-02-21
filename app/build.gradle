@@ -28,6 +28,7 @@ dependencies {
     def roomVersion = "2.2.4"
     def pagingVersion = "2.1.1"
     def mockkVersion = "1.9.2"
+    def kotlinxTestCoroutinesVersion = "1.3.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -42,6 +43,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxTestCoroutinesVersion"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
