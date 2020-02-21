@@ -1,14 +1,11 @@
 package cl.svasquezm.glitunesplayer.tracklist.data.repositories
 
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.room.paging.LimitOffsetDataSource
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultTrackRepository
 import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
-import cl.svasquezm.glitunesplayer.tracklist.data.utils.asPagedListLiveData
 import cl.svasquezm.glitunesplayer.tracklist.data.utils.createMockDataSourceFactory
-import io.mockk.every
+import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
 
@@ -17,24 +14,24 @@ class DefaultTrackRepositoryTest {
     private val repo = mockk<DefaultTrackRepository>()
 
     @Test
-    fun `Find tracks by term should return a data source`(){
+    fun `Find tracks by term should return a data source`() = runBlockingTest {
         val term = "Foo"
         val track: TrackDomainModel = mockk()
         val results = createMockDataSourceFactory(listOf(track))
 
-        every { repo.findAllTracks(term) } returns results
+        coEvery { repo.findAllTracks(term) } returns results
 
         Assert.assertEquals(results, repo.findAllTracks(term))
     }
 
     @Test
-    fun `Find tracks by collection should return a data source`(){
-        val collectionId = "Foo.bar"
+    fun `Find tracks by collection should return a data source`() = runBlockingTest {
+        val collectionId = 100L
         val track: TrackDomainModel = mockk()
         val results = createMockDataSourceFactory(listOf(track))
 
-        every { repo.findAllTracksByCollection(collectionId) } returns results
+        coEvery { repo.findAllTracksByCollection(collectionId) } returns results
 
-        Assert.assertEquals(results, repo.findAllTracks(collectionId))
+        Assert.assertEquals(results, repo.findAllTracksByCollection(collectionId))
     }
 }

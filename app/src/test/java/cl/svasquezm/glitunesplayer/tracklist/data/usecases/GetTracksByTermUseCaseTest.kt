@@ -16,16 +16,12 @@ class GetTracksByTermUseCaseTest {
     fun `Use case should return 1 tracks`() = runBlockingTest {
         val term = "Foo"
         val factory = mockk<DataSource.Factory<Int, TrackDomainModel>>()
-        val list = listOf(mockk<TrackDomainModel>()).asPagedListLiveData()
 
         val repo = mockk<TrackRepository>()
         val uc = GetTracksByTermUseCase(repo)
 
         coEvery { repo.findAllTracks(term) } returns factory
-        coEvery { uc.execute(term) } returns list
-
         uc.execute(term)
-
         coVerify { repo.findAllTracks(term) }
     }
 }

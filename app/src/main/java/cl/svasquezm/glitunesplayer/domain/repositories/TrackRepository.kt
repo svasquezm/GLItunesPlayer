@@ -5,5 +5,5 @@ import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 
 interface TrackRepository {
     suspend fun findAllTracks(term: String): DataSource.Factory<Int, TrackDomainModel>
-    suspend fun findAllTracksByCollection(collectionId: String): DataSource.Factory<Int, TrackDomainModel>
+    suspend fun findAllTracksByCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>
 }

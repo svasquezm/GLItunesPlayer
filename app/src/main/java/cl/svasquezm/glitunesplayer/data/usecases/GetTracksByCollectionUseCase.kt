@@ -8,7 +8,7 @@ import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
 import cl.svasquezm.glitunesplayer.utils.Constants
 
 class GetTracksByCollectionUseCase(private val repo: TrackRepository){
-    suspend fun execute(collectionId: String): LiveData<PagedList<TrackDomainModel>> {
+    suspend fun execute(collectionId: Long): LiveData<PagedList<TrackDomainModel>> {
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(Constants.PAGE_SIZE)
             .setPageSize(Constants.PAGE_SIZE)
