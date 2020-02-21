@@ -4,9 +4,9 @@ import androidx.paging.DataSource
 import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
-import cl.svasquezm.glitunesplayer.tracklist.data.utils.asPagedListLiveData
 import io.mockk.coEvery
-import io.mockk.*
+import io.mockk.coVerify
+import io.mockk.mockk
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
