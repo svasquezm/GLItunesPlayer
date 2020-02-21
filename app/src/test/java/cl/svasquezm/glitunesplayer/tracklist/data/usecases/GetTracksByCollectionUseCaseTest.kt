@@ -20,7 +20,7 @@ class GetTracksByCollectionUseCaseTest {
         val list = listOf(mockk(), mockk<TrackDomainModel>()).asPagedListLiveData()
 
         val repo = mockk<TrackRepository>()
-        val uc: GetTracksByCollectionUseCase = GetTracksByCollectionUseCase(repo)
+        val uc = GetTracksByCollectionUseCase(repo)
 
         coEvery { repo.findAllTracksByCollection(collectionId) } returns factory
         coEvery { uc.execute(collectionId) } returns list
