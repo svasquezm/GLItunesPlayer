@@ -17,6 +17,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +37,7 @@ dependencies {
     def lifecycle = "2.2.0"
     def mockkVersion = "1.9.2"
     def kotlinxTestCoroutinesVersion = "1.3.2"
+    def archCoreTesting = "2.1.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -39,22 +45,24 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
 
     implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
 
     implementation "androidx.paging:paging-runtime:$pagingVersion"
-
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle"
 
+    testImplementation "androidx.arch.core:core-testing:$archCoreTesting"
     testImplementation 'junit:junit:4.12'
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxTestCoroutinesVersion"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
 }

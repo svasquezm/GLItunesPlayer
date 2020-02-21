@@ -1,6 +1,8 @@
 package cl.svasquezm.glitunesplayer.tracklist.data.utils
 
 import android.database.Cursor
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -9,6 +11,9 @@ import androidx.room.RoomSQLiteQuery
 import androidx.room.paging.LimitOffsetDataSource
 import io.mockk.every
 import io.mockk.mockk
+import org.jetbrains.annotations.TestOnly
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * Converts a List to PagedList for testing
@@ -54,5 +59,27 @@ class MockLimitDataSource<T>(private val itemList: List<T>) : LimitOffsetDataSou
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<T>) {
         callback.onResult(itemList, 0)
+    }
+}
+
+object LiveDataTestUtil {
+    @Suppress("UNCHECKED_CAST")
+    @TestOnly
+    @Throws(InterruptedException::class)
+    fun <T> getValue(liveData: LiveData<T>): T {
+        val data = arrayOfNulls<Any>(1)
+        val latch = CountDownLatch(1)
+        val observer = object : Observer<T> {
+            override fun onChanged(t: T) {
+                data[0] = t
+                latch.countDown()
+                liveData.removeObserver(this)
+            }
+
+        }
+        liveData.observeForever(observer)
+        latch.await(2, TimeUnit.SECONDS)
+
+        return data[0] as T
     }
 }

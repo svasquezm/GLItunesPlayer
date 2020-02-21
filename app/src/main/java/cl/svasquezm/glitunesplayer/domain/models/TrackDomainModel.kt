@@ -7,7 +7,7 @@ import cl.svasquezm.glitunesplayer.data.utils.RoomNames
 /**
  * Track Domain representation.
  */
-@Entity(tableName = RoomNames.TrackName)
+@Entity(tableName = RoomNames.tracks)
 class TrackDomainModel(
     @PrimaryKey
     val id: Long,
