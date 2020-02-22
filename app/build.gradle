@@ -32,17 +32,20 @@ android {
 
 dependencies {
 
+    def appCompat = "1.1.0"
     def roomVersion = "2.2.4"
+    def navigation = "2.2.1"
     def pagingVersion = "2.1.1"
     def lifecycle = "2.2.0"
     def mockkVersion = "1.9.2"
     def kotlinxTestCoroutinesVersion = "1.3.2"
     def archCoreTesting = "2.1.0"
+    def ktxCore = "1.2.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.core:core-ktx:$ktxCore"
 
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
@@ -53,6 +56,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
     testImplementation "androidx.arch.core:core-testing:$archCoreTesting"
     testImplementation 'junit:junit:4.12'
