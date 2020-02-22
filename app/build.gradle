@@ -41,11 +41,14 @@ dependencies {
     def kotlinxTestCoroutinesVersion = "1.3.2"
     def archCoreTesting = "2.1.0"
     def ktxCore = "1.2.0"
+    def constraintLayout = "1.1.3"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appCompat"
     implementation "androidx.core:core-ktx:$ktxCore"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
 
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
