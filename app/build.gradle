@@ -42,6 +42,7 @@ dependencies {
     def archCoreTesting = "2.1.0"
     def ktxCore = "1.2.0"
     def constraintLayout = "1.1.3"
+    def retrofit = "2.6.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -62,6 +63,7 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "androidx.arch.core:core-testing:$archCoreTesting"
