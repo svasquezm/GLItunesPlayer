@@ -1,14 +1,12 @@
 package cl.svasquezm.glitunesplayer.presentation.fragments
 
-import android.app.SearchManager
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import cl.svasquezm.glitunesplayer.R
 import cl.svasquezm.glitunesplayer.presentation.presenters.TrackListPresenter
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.TrackViewModel
@@ -52,5 +50,13 @@ class TrackListFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.track_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.search){
+            findNavController().navigate(R.id.action_trackListFragment_to_searchQueriesFragment)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

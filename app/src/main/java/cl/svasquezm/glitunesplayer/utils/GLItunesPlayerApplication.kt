@@ -4,10 +4,13 @@ import android.app.Application
 import androidx.room.Room
 import cl.svasquezm.glitunesplayer.data.databases.TrackRoomDatabase
 import cl.svasquezm.glitunesplayer.data.networking.TracksRetrofitService
+import cl.svasquezm.glitunesplayer.data.repositories.DefaultSearchQueryRepository
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultTrackRepository
+import cl.svasquezm.glitunesplayer.data.usecases.GetSearchQueriesUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
 import cl.svasquezm.glitunesplayer.data.utils.RoomNames
+import cl.svasquezm.glitunesplayer.domain.repositories.SearchQueryRepository
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,6 +34,8 @@ class GLItunesPlayerApplication : Application() {
     object Dependencies {
         lateinit var db: TrackRoomDatabase
         lateinit var trackRepository: TrackRepository
+        lateinit var searchQueryRepository: SearchQueryRepository
+        lateinit var getSearchQueriesUseCase: GetSearchQueriesUseCase
         lateinit var getTracksByTermUseCase: GetTracksByTermUseCase
         lateinit var insertTracksUseCase: InsertTracksUseCase
         lateinit var retrofitService: TracksRetrofitService
@@ -42,6 +47,8 @@ class GLItunesPlayerApplication : Application() {
                 .build()
                 .create(TracksRetrofitService::class.java)
             trackRepository = DefaultTrackRepository(db)
+            searchQueryRepository = DefaultSearchQueryRepository(db)
+            getSearchQueriesUseCase = GetSearchQueriesUseCase(searchQueryRepository)
             getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
             insertTracksUseCase = InsertTracksUseCase(trackRepository)
         }
