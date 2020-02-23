@@ -15,19 +15,23 @@ class GLItunesPlayerApplication : Application() {
         /*
          * Dependencies for project (alternative for dependency injection)
          */
-        val db = Room.databaseBuilder(
+        Dependencies.db = Room.databaseBuilder(
             applicationContext,
             TrackRoomDatabase::class.java,
             RoomNames.trackDatabaseName
         ).allowMainThreadQueries().build()
 
-        val trackRepository: TrackRepository = DefaultTrackRepository(db)
-        val getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
+        Dependencies.initDependencies()
     }
 
     object Dependencies {
         lateinit var db: TrackRoomDatabase
         lateinit var trackRepository: TrackRepository
         lateinit var getTracksByTermUseCase: GetTracksByTermUseCase
+
+        fun initDependencies(){
+            trackRepository = DefaultTrackRepository(db)
+            getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
+        }
     }
 }
