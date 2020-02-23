@@ -1,6 +1,5 @@
 package cl.svasquezm.glitunesplayer.data.databases.daos
 
-import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
@@ -22,8 +21,11 @@ interface TrackDAO {
     fun findTracksForCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>
 
     @Query("select * from ${RoomNames.searchQueries} order by id desc")
-    fun findAllQueries(): LiveData<List<SearchQueryModel>>
+    fun findAllQueries(): List<SearchQueryModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(tracks: List<TrackDomainModel>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(query: SearchQueryModel)
 }

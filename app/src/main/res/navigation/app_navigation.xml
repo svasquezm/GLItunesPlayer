@@ -9,6 +9,17 @@
         android:id="@+id/trackListFragment"
         android:name="cl.svasquezm.glitunesplayer.presentation.fragments.TrackListFragment"
         android:label="fragment_track"
-        tools:layout="@layout/fragment_track" />
+        tools:layout="@layout/fragment_track">
+        <action
+            android:id="@+id/action_trackListFragment_to_searchQueriesFragment"
+            app:destination="@id/searchQueriesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchQueriesFragment"
+        android:name="cl.svasquezm.glitunesplayer.presentation.fragments.SearchQueriesFragment"
+        android:label="fragment_search_queries"
+        tools:layout="@layout/fragment_search_queries" />
 
 </navigation>
