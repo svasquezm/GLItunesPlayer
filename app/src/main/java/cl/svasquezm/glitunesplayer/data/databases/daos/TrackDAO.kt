@@ -22,7 +22,7 @@ interface TrackDAO {
     fun findTracksForCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>
 
     @Query("select * from ${RoomNames.searchQueries} order by id desc")
-    fun findAllQueries(): LiveData<List<SearchQueryModel>>
+    fun findAllQueries(): List<SearchQueryModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(tracks: List<TrackDomainModel>)
