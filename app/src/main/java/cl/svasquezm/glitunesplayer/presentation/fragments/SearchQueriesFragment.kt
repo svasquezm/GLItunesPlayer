@@ -1,4 +1,4 @@
-package cl.svasquezm.glitunesplayer
+package cl.svasquezm.glitunesplayer.presentation.fragments
 
 
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cl.svasquezm.glitunesplayer.R
 import cl.svasquezm.glitunesplayer.presentation.adapters.SearchQueryAdapter
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.SearchQueryViewModel
 import cl.svasquezm.glitunesplayer.utils.GLItunesPlayerApplication
@@ -40,6 +41,7 @@ class SearchQueriesFragment : Fragment() {
         view.findViewById<RecyclerView>(R.id.recyclerView).apply {
             addItemDecoration(DividerItemDecoration(this.context, LinearLayoutManager.VERTICAL))
             adapter = SearchQueryAdapter(viewModel.getQueries())
+            adapter?.notifyDataSetChanged()
         }
     }
 }

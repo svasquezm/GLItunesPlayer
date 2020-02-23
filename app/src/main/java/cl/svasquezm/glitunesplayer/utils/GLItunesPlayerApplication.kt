@@ -11,6 +11,7 @@ import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertSearchQueryUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
 import cl.svasquezm.glitunesplayer.data.utils.RoomNames
+import cl.svasquezm.glitunesplayer.domain.models.SearchQueryModel
 import cl.svasquezm.glitunesplayer.domain.repositories.SearchQueryRepository
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
 import retrofit2.Retrofit
@@ -54,6 +55,8 @@ class GLItunesPlayerApplication : Application() {
             inserSearchQueryUseCase = InsertSearchQueryUseCase(searchQueryRepository)
             getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
             insertTracksUseCase = InsertTracksUseCase(trackRepository)
+
+            inserSearchQueryUseCase.execute(SearchQueryModel(1, "alasja"))
         }
     }
 }

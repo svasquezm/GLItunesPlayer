@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchQueriesFragment"
-        android:name="cl.svasquezm.glitunesplayer.SearchQueriesFragment"
+        android:name="cl.svasquezm.glitunesplayer.presentation.fragments.SearchQueriesFragment"
         android:label="fragment_search_queries"
         tools:layout="@layout/fragment_search_queries" />
 
