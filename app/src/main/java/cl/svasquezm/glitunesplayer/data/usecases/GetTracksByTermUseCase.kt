@@ -3,17 +3,27 @@ package cl.svasquezm.glitunesplayer.data.usecases
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import cl.svasquezm.glitunesplayer.data.utils.TrackPagedListBoundaryCallback
 import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
 import cl.svasquezm.glitunesplayer.utils.Constants
 
 class GetTracksByTermUseCase(private val repo: TrackRepository){
-    suspend fun execute(term: String = ""): LiveData<PagedList<TrackDomainModel>> {
-        val config = PagedList.Config.Builder()
+    suspend fun execute(term: String = "", boundaryCallback: TrackPagedListBoundaryCallback? = null): LiveData<PagedList<TrackDomainModel>> {
+
+       val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(Constants.PAGE_SIZE)
             .setPageSize(Constants.PAGE_SIZE)
             .build()
 
-        return LivePagedListBuilder<Int, TrackDomainModel>(repo.findAllTracks(term), config).build()
+        val tracks = if(term.isEmpty()){
+            repo.findAllTracks()
+        } else {
+            repo.findAllTracks(term)
+        }
+
+        return LivePagedListBuilder<Int, TrackDomainModel>(tracks, config)
+            .setBoundaryCallback(boundaryCallback)
+            .build()
     }
 }

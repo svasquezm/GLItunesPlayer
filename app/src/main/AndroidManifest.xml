@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cl.svasquezm.glitunesplayer">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".utils.GLItunesPlayerApplication"
         android:allowBackup="true"

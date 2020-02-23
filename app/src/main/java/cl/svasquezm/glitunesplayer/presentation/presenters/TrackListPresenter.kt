@@ -10,14 +10,16 @@ import cl.svasquezm.glitunesplayer.presentation.adapters.diffcallbacks.TrackDiff
 
 class TrackListPresenter(parentView: ViewGroup) {
 
-    private val adapter by lazy { TrackListAdapter(TrackDiffCallback()) }
+    private val tracksAdapter by lazy { TrackListAdapter(TrackDiffCallback()) }
     val recyclerView by lazy {
         RecyclerView(parentView.context).apply {
             layoutManager = LinearLayoutManager(parentView.context)
+            adapter = tracksAdapter
         }
     }
 
     fun updateView(pagedList: PagedList<TrackDomainModel>){
-        adapter.submitList(pagedList)
+        tracksAdapter.submitList(pagedList)
+        tracksAdapter.notifyDataSetChanged()
     }
 }
