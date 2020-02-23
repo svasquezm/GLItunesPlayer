@@ -4,4 +4,5 @@ import cl.svasquezm.glitunesplayer.domain.models.SearchQueryModel
 
 interface SearchQueryRepository {
     fun findAllQueries(): List<SearchQueryModel>
+    fun insert(query: SearchQueryModel)
 }

@@ -8,6 +8,7 @@ import cl.svasquezm.glitunesplayer.data.repositories.DefaultSearchQueryRepositor
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultTrackRepository
 import cl.svasquezm.glitunesplayer.data.usecases.GetSearchQueriesUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
+import cl.svasquezm.glitunesplayer.data.usecases.InsertSearchQueryUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
 import cl.svasquezm.glitunesplayer.data.utils.RoomNames
 import cl.svasquezm.glitunesplayer.domain.repositories.SearchQueryRepository
@@ -38,6 +39,7 @@ class GLItunesPlayerApplication : Application() {
         lateinit var getSearchQueriesUseCase: GetSearchQueriesUseCase
         lateinit var getTracksByTermUseCase: GetTracksByTermUseCase
         lateinit var insertTracksUseCase: InsertTracksUseCase
+        lateinit var inserSearchQueryUseCase: InsertSearchQueryUseCase
         lateinit var retrofitService: TracksRetrofitService
 
         fun initDependencies(){
@@ -49,6 +51,7 @@ class GLItunesPlayerApplication : Application() {
             trackRepository = DefaultTrackRepository(db)
             searchQueryRepository = DefaultSearchQueryRepository(db)
             getSearchQueriesUseCase = GetSearchQueriesUseCase(searchQueryRepository)
+            inserSearchQueryUseCase = InsertSearchQueryUseCase(searchQueryRepository)
             getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
             insertTracksUseCase = InsertTracksUseCase(trackRepository)
         }
