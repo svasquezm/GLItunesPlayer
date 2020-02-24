@@ -14,4 +14,9 @@ interface TracksRetrofitService {
         @Query("page") page: Int,
         @Query("limit") limit: Int = Constants.PAGE_SIZE,
         @Query("mediaType") mediaType: String = "music"): Call<ResultsModel>
+
+    @GET("lookup")
+    fun getCollectionTracks(
+        @Query("id") id: Long,
+        @Query("entity") page: String = "song"): Call<ResultsModel>
 }

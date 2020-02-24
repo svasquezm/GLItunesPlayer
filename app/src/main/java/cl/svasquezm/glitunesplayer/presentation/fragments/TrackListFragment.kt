@@ -50,7 +50,8 @@ class TrackListFragment : Fragment(), SearchView.OnQueryTextListener {
         })
 
         presenter.setOnTrackClickListener {
-            findNavController().navigate(R.id.action_trackListFragment_to_collectionDetailsFragment)
+            val dest = TrackListFragmentDirections.actionTrackListFragmentToCollectionDetailsFragment(it.collectionId)
+            findNavController().navigate(dest)
         }
     }
 

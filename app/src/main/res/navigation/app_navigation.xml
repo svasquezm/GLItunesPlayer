@@ -34,6 +34,10 @@
         android:id="@+id/collectionDetailsFragment"
         android:name="cl.svasquezm.glitunesplayer.presentation.fragments.CollectionDetailsFragment"
         android:label="fragment_collection_details"
-        tools:layout="@layout/fragment_collection_details" />
+        tools:layout="@layout/fragment_collection_details" >
+        <argument
+            android:name="collectionId"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

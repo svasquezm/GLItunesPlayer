@@ -5,6 +5,8 @@ import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
 
 class DefaultTrackRepository(private val db: TrackRoomDatabase) : TrackRepository {
+    override fun findTrackById(id: Long) = db.dao().findTrackById(id)
+
     override suspend fun findAllTracks()
             = db.dao().findAllTracks()
 
