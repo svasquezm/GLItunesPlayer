@@ -22,7 +22,7 @@ class GetSearchQueriesUseCaseTest {
     @Test
     fun `Use case should return 1 query`() = runBlockingTest {
         val query = SearchQueryModel(0, "Foo")
-        val list = MutableLiveData<List<SearchQueryModel>>(listOf(query))
+        val list = listOf(query)
         val repo = mockk<SearchQueryRepository>()
         val uc = GetSearchQueriesUseCase(repo)
 
@@ -30,6 +30,6 @@ class GetSearchQueriesUseCaseTest {
         val results = uc.execute()
         coVerify { repo.findAllQueries() }
 
-        Assert.assertEquals(1, LiveDataTestUtil.getValue(results).size)
+        Assert.assertEquals(1, results.size)
     }
 }
