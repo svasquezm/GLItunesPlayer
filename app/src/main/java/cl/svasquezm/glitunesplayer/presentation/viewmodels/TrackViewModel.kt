@@ -1,30 +1,27 @@
 package cl.svasquezm.glitunesplayer.presentation.viewmodels
 
-import androidx.lifecycle.*
-import androidx.paging.PagedList
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import cl.svasquezm.glitunesplayer.data.usecases.GetNetworkTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
-import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
-import cl.svasquezm.glitunesplayer.data.utils.TrackPagedListBoundaryCallback
 import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
-import cl.svasquezm.glitunesplayer.utils.GLItunesPlayerApplication.Dependencies
 import kotlinx.coroutines.launch
 
 class TrackViewModel(private val getTracksByTermUseCase: GetTracksByTermUseCase,
-                     private val insertTracksUseCase: InsertTracksUseCase
+                     private val getNetworkTracksByTermUseCase: GetNetworkTracksByTermUseCase
 ) : ViewModel() {
-    var mutableLiveData: MutableLiveData<PagedList<TrackDomainModel>> = MutableLiveData()
+    var liveData: MutableLiveData<List<TrackDomainModel>> = MutableLiveData()
 
-    fun getTracks(observer: LifecycleOwner, term: String = "", onChange: (PagedList<TrackDomainModel>) -> Unit = {}){
+    fun getTracks(term: String = "", networking: Boolean = false){
         viewModelScope.launch {
-            val list = getTracksByTermUseCase.execute(term,
-                TrackPagedListBoundaryCallback(Dependencies.retrofitService,
-                    insertTracksUseCase,
-                    term)
-            )
-
-            list.observe(observer, Observer {
-                mutableLiveData.value = it
-            })
+            if(networking) {
+                getNetworkTracksByTermUseCase.execute(term, onFinish = {
+                    liveData.value = getTracksByTermUseCase.execute(term)
+                })
+            } else {
+                liveData.value = getTracksByTermUseCase.execute(term)
+            }
         }
     }
 }
