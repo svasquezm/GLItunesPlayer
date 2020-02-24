@@ -14,12 +14,30 @@
             android:id="@+id/action_trackListFragment_to_searchQueriesFragment"
             app:destination="@id/searchQueriesFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_trackListFragment_to_collectionDetailsFragment"
+            app:destination="@id/collectionDetailsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/searchQueriesFragment"
         android:name="cl.svasquezm.glitunesplayer.presentation.fragments.SearchQueriesFragment"
         android:label="fragment_search_queries"
         tools:layout="@layout/fragment_search_queries" />
+    <fragment
+        android:id="@+id/collectionDetailsFragment"
+        android:name="cl.svasquezm.glitunesplayer.presentation.fragments.CollectionDetailsFragment"
+        android:label="fragment_collection_details"
+        tools:layout="@layout/fragment_collection_details" >
+        <argument
+            android:name="trackId"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

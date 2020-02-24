@@ -11,6 +11,9 @@ import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 
 @Dao
 interface TrackDAO {
+    @Query("select * from ${RoomNames.tracks} where id = :id")
+    fun findTrackById(id: Long): TrackDomainModel
+
     @Query("select * from ${RoomNames.tracks}")
     fun findAllTracks(): DataSource.Factory<Int, TrackDomainModel>
 
@@ -18,7 +21,7 @@ interface TrackDAO {
     fun findAllTracksByTerm(term: String): List<TrackDomainModel>
 
     @Query("select * from ${RoomNames.tracks} where collectionId = :collectionId")
-    fun findTracksForCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>
+    fun findTracksForCollection(collectionId: Long): List<TrackDomainModel>
 
     @Query("select * from ${RoomNames.searchQueries} order by id desc")
     fun findAllQueries(): List<SearchQueryModel>

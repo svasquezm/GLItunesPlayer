@@ -48,6 +48,11 @@ class TrackListFragment : Fragment(), SearchView.OnQueryTextListener {
         viewModel.liveData.observe(this, Observer {
             presenter.updateView(it)
         })
+
+        presenter.setOnTrackClickListener {
+            val dest = TrackListFragmentDirections.actionTrackListFragmentToCollectionDetailsFragment(it.id)
+            findNavController().navigate(dest)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

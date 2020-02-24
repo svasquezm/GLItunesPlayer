@@ -1,19 +1,7 @@
 package cl.svasquezm.glitunesplayer.data.usecases
 
-import androidx.lifecycle.LiveData
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import cl.svasquezm.glitunesplayer.domain.models.TrackDomainModel
 import cl.svasquezm.glitunesplayer.domain.repositories.TrackRepository
-import cl.svasquezm.glitunesplayer.utils.Constants
 
 class GetTracksByCollectionUseCase(private val repo: TrackRepository){
-    suspend fun execute(collectionId: Long): LiveData<PagedList<TrackDomainModel>> {
-        val config = PagedList.Config.Builder()
-            .setInitialLoadSizeHint(Constants.PAGE_SIZE)
-            .setPageSize(Constants.PAGE_SIZE)
-            .build()
-
-        return LivePagedListBuilder<Int, TrackDomainModel>(repo.findAllTracksByCollection(collectionId), config).build()
-    }
+    fun execute(collectionId: Long) = repo.findAllTracksByCollection(collectionId)
 }

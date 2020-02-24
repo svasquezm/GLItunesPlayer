@@ -11,9 +11,11 @@ class TrackViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val artistName = view.findViewById<TextView>(R.id.artist)
     private val albumName = view.findViewById<TextView>(R.id.album)
 
-    fun bind(track: TrackDomainModel){
+    fun bind(track: TrackDomainModel, onItemClickListener: (TrackDomainModel) -> Unit){
         trackName.text = track.name
         artistName.text = track.artistName
         albumName.text = track.collectionName
+
+        itemView.setOnClickListener { onItemClickListener(track) }
     }
 }

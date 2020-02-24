@@ -20,4 +20,8 @@ class TrackListPresenter(parentView: ViewGroup) {
         tracksAdapter.tracks = list
         tracksAdapter.notifyDataSetChanged()
     }
+
+    fun setOnTrackClickListener(listener: (TrackDomainModel) -> Unit){
+        tracksAdapter.onItemClickListener = listener
+    }
 }

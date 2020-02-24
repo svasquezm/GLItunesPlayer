@@ -11,6 +11,7 @@ class TrackResultMapper {
             collectionId = it.collectionId,
             collectionName = it.collectionName,
             artWorkUrl = it.artWorkUrl,
+            previewUrl = it.previewUrl,
             artistName = it.artistName,
             trackNumber = it.trackNumber,
             isStreamable = it.isStreamable
