@@ -18,6 +18,9 @@ class ResultDataModel(
     @SerializedName("artworkUrl100")
     val artWorkUrl: String,
 
+    @SerializedName("previewUrl")
+    val previewUrl: String,
+
     @SerializedName("artistName")
     val artistName: String,
 

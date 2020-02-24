@@ -16,6 +16,7 @@ class TrackDomainModel(
     val collectionName: String,
     val artWorkUrl: String,
     val artistName: String,
+    val previewUrl: String,
     val trackNumber: Int,
     val isStreamable: Boolean
 )

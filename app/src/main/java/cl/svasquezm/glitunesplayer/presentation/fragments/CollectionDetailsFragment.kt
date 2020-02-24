@@ -16,15 +16,17 @@ import cl.svasquezm.glitunesplayer.presentation.adapters.TrackListAdapter
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.CollectionDetailsViewModel
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.TrackViewModel
 import cl.svasquezm.glitunesplayer.utils.GLItunesPlayerApplication
+import cl.svasquezm.glitunesplayer.utils.PlayMediaHelper
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 
-/**
- * A simple [Fragment] subclass.
- */
 @Suppress("UNCHECKED_CAST")
 class CollectionDetailsFragment : Fragment() {
-    val args by lazy { CollectionDetailsFragmentArgs.fromBundle(arguments!!) }
+    private val player = PlayMediaHelper()
 
+    val args by lazy { CollectionDetailsFragmentArgs.fromBundle(arguments!!) }
     val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -62,6 +64,12 @@ class CollectionDetailsFragment : Fragment() {
             trackAdapter.tracks = it
             trackAdapter.notifyDataSetChanged()
         })
+
+        trackAdapter.onItemClickListener = { track ->
+            CoroutineScope(Dispatchers.IO).async {
+                player.playOrStopMedia(track.previewUrl)
+            }
+        }
 
         Picasso.get()
             .load(model.artWorkUrl)

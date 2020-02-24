@@ -16,9 +16,6 @@ import cl.svasquezm.glitunesplayer.presentation.adapters.SearchQueryAdapter
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.SearchQueryViewModel
 import cl.svasquezm.glitunesplayer.utils.GLItunesPlayerApplication
 
-/**
- * A simple [Fragment] subclass.
- */
 @Suppress("UNCHECKED_CAST")
 class SearchQueriesFragment : Fragment() {
     val viewModel by lazy {
