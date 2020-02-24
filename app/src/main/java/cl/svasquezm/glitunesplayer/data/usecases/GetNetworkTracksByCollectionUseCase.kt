@@ -16,9 +16,9 @@ class GetNetworkTracksByCollectionUseCase(
     private val retrofitService: TracksRetrofitService,
     private val repo: TrackRepository
 ) {
-    fun execute(term: String = "", onFinish: () -> Unit = {}) {
+    fun execute(collectionId: Long, onFinish: () -> Unit = {}) {
 
-        retrofitService.getTracks(term = term, page = page)
+        retrofitService.getCollectionTracks(collectionId)
             .enqueue(object : Callback<ResultsModel> {
                 override fun onFailure(call: Call<ResultsModel>, t: Throwable) {
                     Log.i("RESPONSE", "Failed: $t")

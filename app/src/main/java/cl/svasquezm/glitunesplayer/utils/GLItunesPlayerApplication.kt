@@ -6,11 +6,7 @@ import cl.svasquezm.glitunesplayer.data.databases.TrackRoomDatabase
 import cl.svasquezm.glitunesplayer.data.networking.TracksRetrofitService
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultSearchQueryRepository
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultTrackRepository
-import cl.svasquezm.glitunesplayer.data.usecases.GetSearchQueriesUseCase
-import cl.svasquezm.glitunesplayer.data.usecases.GetNetworkTracksByTermUseCase
-import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
-import cl.svasquezm.glitunesplayer.data.usecases.InsertSearchQueryUseCase
-import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
+import cl.svasquezm.glitunesplayer.data.usecases.*
 import cl.svasquezm.glitunesplayer.data.utils.RoomNames
 import cl.svasquezm.glitunesplayer.domain.models.SearchQueryModel
 import cl.svasquezm.glitunesplayer.domain.repositories.SearchQueryRepository
@@ -40,6 +36,9 @@ class GLItunesPlayerApplication : Application() {
         lateinit var searchQueryRepository: SearchQueryRepository
         lateinit var getSearchQueriesUseCase: GetSearchQueriesUseCase
         lateinit var getTracksByTermUseCase: GetTracksByTermUseCase
+        lateinit var getTrackByIdUseCase: GetTrackByIdUseCase
+        lateinit var getTracksByCollectionUseCase: GetTracksByCollectionUseCase
+        lateinit var getNetworkTracksByCollectionUseCase: GetNetworkTracksByCollectionUseCase
         lateinit var getTrNetworkTracksByTermUseCase: GetNetworkTracksByTermUseCase
         lateinit var insertTracksUseCase: InsertTracksUseCase
         lateinit var inserSearchQueryUseCase: InsertSearchQueryUseCase
@@ -57,8 +56,11 @@ class GLItunesPlayerApplication : Application() {
             inserSearchQueryUseCase = InsertSearchQueryUseCase(searchQueryRepository)
             getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
             getTrNetworkTracksByTermUseCase = GetNetworkTracksByTermUseCase(retrofitService, trackRepository)
-            insertTracksUseCase = InsertTracksUseCase(trackRepository)
+            getTrackByIdUseCase = GetTrackByIdUseCase(trackRepository)
+            getTracksByCollectionUseCase = GetTracksByCollectionUseCase(trackRepository)
+            getNetworkTracksByCollectionUseCase = GetNetworkTracksByCollectionUseCase(retrofitService, trackRepository)
 
+            insertTracksUseCase = InsertTracksUseCase(trackRepository)
             inserSearchQueryUseCase.execute(SearchQueryModel(1, "alasja"))
         }
     }

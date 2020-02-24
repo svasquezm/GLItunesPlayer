@@ -21,7 +21,7 @@ interface TrackDAO {
     fun findAllTracksByTerm(term: String): List<TrackDomainModel>
 
     @Query("select * from ${RoomNames.tracks} where collectionId = :collectionId")
-    fun findTracksForCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>
+    fun findTracksForCollection(collectionId: Long): List<TrackDomainModel>
 
     @Query("select * from ${RoomNames.searchQueries} order by id desc")
     fun findAllQueries(): List<SearchQueryModel>

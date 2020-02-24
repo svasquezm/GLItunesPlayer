@@ -38,6 +38,9 @@
         <argument
             android:name="collectionId"
             app:argType="long" />
+        <argument
+            android:name="trackId"
+            app:argType="long" />
     </fragment>
 
 </navigation>
