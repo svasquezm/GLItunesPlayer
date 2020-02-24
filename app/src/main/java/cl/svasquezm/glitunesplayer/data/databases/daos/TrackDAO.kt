@@ -14,8 +14,8 @@ interface TrackDAO {
     @Query("select * from ${RoomNames.tracks}")
     fun findAllTracks(): DataSource.Factory<Int, TrackDomainModel>
 
-    @Query("select * from ${RoomNames.tracks} where name like '%' || :term || '%'")
-    fun findAllTracksByTerm(term: String): DataSource.Factory<Int, TrackDomainModel>
+    @Query("select * from ${RoomNames.tracks} where name like '%' || :term || '%' or collectionName like '%' || :term || '%' or artistName like '%' || :term || '%'")
+    fun findAllTracksByTerm(term: String): List<TrackDomainModel>
 
     @Query("select * from ${RoomNames.tracks} where collectionId = :collectionId")
     fun findTracksForCollection(collectionId: Long): DataSource.Factory<Int, TrackDomainModel>

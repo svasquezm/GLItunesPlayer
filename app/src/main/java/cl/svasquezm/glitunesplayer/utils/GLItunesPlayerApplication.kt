@@ -7,6 +7,7 @@ import cl.svasquezm.glitunesplayer.data.networking.TracksRetrofitService
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultSearchQueryRepository
 import cl.svasquezm.glitunesplayer.data.repositories.DefaultTrackRepository
 import cl.svasquezm.glitunesplayer.data.usecases.GetSearchQueriesUseCase
+import cl.svasquezm.glitunesplayer.data.usecases.GetNetworkTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.GetTracksByTermUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertSearchQueryUseCase
 import cl.svasquezm.glitunesplayer.data.usecases.InsertTracksUseCase
@@ -39,6 +40,7 @@ class GLItunesPlayerApplication : Application() {
         lateinit var searchQueryRepository: SearchQueryRepository
         lateinit var getSearchQueriesUseCase: GetSearchQueriesUseCase
         lateinit var getTracksByTermUseCase: GetTracksByTermUseCase
+        lateinit var getTrNetworkTracksByTermUseCase: GetNetworkTracksByTermUseCase
         lateinit var insertTracksUseCase: InsertTracksUseCase
         lateinit var inserSearchQueryUseCase: InsertSearchQueryUseCase
         lateinit var retrofitService: TracksRetrofitService
@@ -54,6 +56,7 @@ class GLItunesPlayerApplication : Application() {
             getSearchQueriesUseCase = GetSearchQueriesUseCase(searchQueryRepository)
             inserSearchQueryUseCase = InsertSearchQueryUseCase(searchQueryRepository)
             getTracksByTermUseCase = GetTracksByTermUseCase(trackRepository)
+            getTrNetworkTracksByTermUseCase = GetNetworkTracksByTermUseCase(retrofitService, trackRepository)
             insertTracksUseCase = InsertTracksUseCase(trackRepository)
 
             inserSearchQueryUseCase.execute(SearchQueryModel(1, "alasja"))
