@@ -16,12 +16,11 @@ class GetTracksByCollectionUseCaseTest {
     @Test
     fun `Use case should return 2 tracks`() = runBlockingTest {
         val collectionId = 100L
-        val factory = mockk<DataSource.Factory<Int, TrackDomainModel>>()
 
         val repo = mockk<TrackRepository>()
         val uc = GetTracksByCollectionUseCase(repo)
 
-        coEvery { repo.findAllTracksByCollection(collectionId) } returns factory
+        coEvery { repo.findAllTracksByCollection(collectionId) } returns listOf()
         uc.execute(collectionId)
         coVerify { repo.findAllTracksByCollection(collectionId) }
     }

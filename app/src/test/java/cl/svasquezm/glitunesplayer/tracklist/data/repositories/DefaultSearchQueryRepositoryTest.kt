@@ -25,10 +25,10 @@ class DefaultSearchQueryRepositoryTest {
     @Test
     fun `Find queries should return a live data`() = runBlockingTest {
         val query = SearchQueryModel(0, "Foo")
-        val results = MutableLiveData(listOf(query))
+        val results = listOf(query)
 
         coEvery { repo.findAllQueries() } returns results
 
-        Assert.assertEquals(1, LiveDataTestUtil.getValue(repo.findAllQueries()).size)
+        Assert.assertEquals(1, repo.findAllQueries().size)
     }
 }

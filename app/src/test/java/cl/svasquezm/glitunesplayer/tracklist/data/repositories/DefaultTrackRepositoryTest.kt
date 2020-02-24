@@ -17,7 +17,7 @@ class DefaultTrackRepositoryTest {
     fun `Find tracks by term should return a data source`() = runBlockingTest {
         val term = "Foo"
         val track: TrackDomainModel = mockk()
-        val results = createMockDataSourceFactory(listOf(track))
+        val results = listOf(track)
 
         coEvery { repo.findAllTracks(term) } returns results
 
@@ -28,7 +28,7 @@ class DefaultTrackRepositoryTest {
     fun `Find tracks by collection should return a data source`() = runBlockingTest {
         val collectionId = 100L
         val track: TrackDomainModel = mockk()
-        val results = createMockDataSourceFactory(listOf(track))
+        val results = listOf(track)
 
         coEvery { repo.findAllTracksByCollection(collectionId) } returns results
 

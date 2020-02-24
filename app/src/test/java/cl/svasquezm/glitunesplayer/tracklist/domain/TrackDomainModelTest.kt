@@ -14,7 +14,7 @@ class TrackDomainModelTest {
         val artistName = "Foo"
         val collectionId = 1234L
         val collectionName = "Foo.bar"
-        val time = 1000L
+        val previewUrl = "Foo.bar"
         val trackNumber = 12
         val isStreamable = true
 
@@ -26,7 +26,7 @@ class TrackDomainModelTest {
             artWorkUrl = artWorkUrl,
             artistName = artistName,
             trackNumber = trackNumber,
-            time = time,
+            previewUrl = previewUrl,
             isStreamable = isStreamable
         )
 
@@ -37,7 +37,7 @@ class TrackDomainModelTest {
         Assert.assertEquals(artWorkUrl, model.artWorkUrl)
         Assert.assertEquals(artistName, model.artistName)
         Assert.assertEquals(trackNumber, model.trackNumber)
-        Assert.assertEquals(time, model.time)
+        Assert.assertEquals(previewUrl, model.previewUrl)
         Assert.assertEquals(isStreamable, model.isStreamable)
     }
 }
