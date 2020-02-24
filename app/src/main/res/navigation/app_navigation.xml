@@ -36,9 +36,6 @@
         android:label="fragment_collection_details"
         tools:layout="@layout/fragment_collection_details" >
         <argument
-            android:name="collectionId"
-            app:argType="long" />
-        <argument
             android:name="trackId"
             app:argType="long" />
     </fragment>

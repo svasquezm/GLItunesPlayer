@@ -47,6 +47,7 @@ dependencies {
     def retrofit = "2.6.2"
     def gson = "2.8.5"
     def gsonConverter = "2.4.0"
+    def picasso = "2.71828"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -70,6 +71,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.google.code.gson:gson:$gson"
     implementation "com.squareup.retrofit2:converter-gson:$gsonConverter"
+    implementation "com.squareup.picasso:picasso:$picasso"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "androidx.arch.core:core-testing:$archCoreTesting"

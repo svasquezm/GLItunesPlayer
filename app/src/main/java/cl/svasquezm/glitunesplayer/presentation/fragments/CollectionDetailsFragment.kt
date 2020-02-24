@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,7 @@ import cl.svasquezm.glitunesplayer.presentation.adapters.TrackListAdapter
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.CollectionDetailsViewModel
 import cl.svasquezm.glitunesplayer.presentation.viewmodels.TrackViewModel
 import cl.svasquezm.glitunesplayer.utils.GLItunesPlayerApplication
+import com.squareup.picasso.Picasso
 
 /**
  * A simple [Fragment] subclass.
@@ -55,10 +57,14 @@ class CollectionDetailsFragment : Fragment() {
             adapter = trackAdapter
         }
 
-        viewModel.getCollectionTracks(args.collectionId)
+        viewModel.getCollectionTracks(model.collectionId)
         viewModel.collectionTracksLiveData.observe(this, Observer {
             trackAdapter.tracks = it
             trackAdapter.notifyDataSetChanged()
         })
+
+        Picasso.get()
+            .load(model.artWorkUrl)
+            .into(view.findViewById<ImageView>(R.id.image))
     }
 }
